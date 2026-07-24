@@ -78,11 +78,19 @@ class ShoppingCart {
 
   // Update cart counter in UI
   updateCartCount() {
+    const count = this.getCartCount();
+    
+    // Update floating cart counter
     const cartCount = document.getElementById("cart-count");
     if (cartCount) {
-      const count = this.getCartCount();
       cartCount.textContent = count;
-      cartCount.style.display = count > 0 ? "block" : "none";
+      cartCount.style.display = count > 0 ? "flex" : "none";
+    }
+
+    // Update cart link count badge
+    const cartLinkCount = document.getElementById("cart-link-count");
+    if (cartLinkCount) {
+      cartLinkCount.textContent = count;
     }
   }
 

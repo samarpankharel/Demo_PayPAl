@@ -6,7 +6,6 @@ class UIManager {
     this.cart = cart;
     this.favorites = this.loadFavorites();
     this.sortBy = "default";
-    this.initializeEventListeners();
   }
 
   // Initialize event listeners for all "Add to Cart" buttons
@@ -17,6 +16,7 @@ class UIManager {
         this.handleAddToCart(e);
       });
     });
+    console.log(`✓ Attached event listeners to ${buttons.length} buttons`);
   }
 
   // Handle add to cart button click

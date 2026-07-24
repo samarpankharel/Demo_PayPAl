@@ -1,9 +1,17 @@
 // Main Application Initialization
 // Initializes all components and sets up the e-commerce store
 
+// Global UI Manager instance
+let ui;
+
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("🔄 Initializing e-commerce store...");
+
   // Initialize UI Manager
-  const ui = new UIManager(cart);
+  ui = new UIManager(cart);
+
+  // Attach event listeners to buttons
+  ui.initializeEventListeners();
 
   // Add data-product-id to each product card for easier reference
   const cards = document.querySelectorAll(".product-card");
@@ -16,10 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // Add cart icon/counter to header if not already present
   addCartCounter();
 
-  // Setup sorting and filtering (optional - add UI elements in HTML as needed)
+  // Setup sorting and filtering
   setupSortingAndFiltering(ui);
 
   console.log("✓ E-commerce store initialized successfully");
+  console.log("Cart items:", cart.getItems());
 });
 
 // Add cart counter to header
@@ -50,25 +59,34 @@ function addCartCounter() {
       z-index: 1000;
       cursor: pointer;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease;
       display: none;
     `;
     cartCounter.textContent = "0";
 
+    // Click to open cart page
     cartCounter.addEventListener("click", () => {
-      console.log("Cart clicked");
-      console.log("Cart items:", cart.getItems());
-      console.log("Total:", cart.calculateTotal());
+      window.location.href = "cart.html";
+    });
+
+    // Hover effect
+    cartCounter.addEventListener("mouseenter", function () {
+      this.style.transform = "scale(1.1)";
+    });
+
+    cartCounter.addEventListener("mouseleave", function () {
+      this.style.transform = "scale(1)";
     });
 
     document.body.appendChild(cartCounter);
+
+    // Update initial count
+    cart.updateCartCount();
   }
 }
 
 // Setup sorting and filtering functionality
 function setupSortingAndFiltering(ui) {
-  // This function can be expanded to add UI controls for sorting and filtering
-  // For now, it serves as a placeholder for future enhancements
-
   // Example: Sort by price (you can call this from a dropdown in the UI)
   window.sortByPrice = (order) => {
     ui.sortProducts(order === "low" ? "price-low" : "price-high");

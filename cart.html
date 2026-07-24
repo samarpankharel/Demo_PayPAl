@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart - Premium T-Shirts</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Cart page specific styles */
+      .cart-container {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      .cart-header {
+        font-size: 2rem;
+        margin-bottom: 30px;
+      }
+
+      .cart-empty {
+        text-align: center;
+        padding: 60px 20px;
+        color: #6b6b6b;
+      }
+
+      .cart-empty p {
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+      }
+
+      .cart-empty a {
+        background: #d9485f;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .cart-items {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        margin-bottom: 30px;
+      }
+
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .cart-item:last-child {
+        border-bottom: none;
+      }
+
+      .item-details {
+        flex: 1;
+      }
+
+      .item-name {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .item-price {
+        color: #d9485f;
+        font-weight: 700;
+      }
+
+      .item-controls {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .quantity-control {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #f0f0f0;
+        padding: 5px 10px;
+        border-radius: 6px;
+      }
+
+      .quantity-control button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1.1rem;
+        padding: 0;
+      }
+
+      .quantity-control input {
+        width: 40px;
+        text-align: center;
+        border: none;
+        background: transparent;
+        font-size: 1rem;
+      }
+
+      .remove-btn {
+        background: #d9485f;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.9rem;
+      }
+
+      .remove-btn:hover {
+        background: #a82d47;
+      }
+
+      .cart-summary {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .summary-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        font-size: 1rem;
+      }
+
+      .summary-row.total {
+        border-top: 2px solid #f0f0f0;
+        padding-top: 15px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #d9485f;
+      }
+
+      .checkout-btns {
+        display: flex;
+        gap: 12px;
+        margin-top: 20px;
+      }
+
+      .checkout-btns button {
+        flex: 1;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .checkout-btn {
+        background: #d9485f;
+        color: white;
+      }
+
+      .checkout-btn:hover {
+        background: #a82d47;
+      }
+
+      .continue-shopping {
+        background: #f0f0f0;
+        color: #1f1f1f;
+      }
+
+      .continue-shopping:hover {
+        background: #e0e0e0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header with back button -->
+    <header class="hero">
+      <h1>Shopping Cart</h1>
+      <p><a href="index.html" style="color: white; text-decoration: underline;">← Back to Shopping</a></p>
+    </header>
+
+    <!-- Cart content -->
+    <main class="cart-container">
+      <h2 class="cart-header">Your Cart</h2>
+
+      <!-- Cart items list -->
+      <div id="cart-items-container" class="cart-items">
+        <!-- Items will be loaded here by JavaScript -->
+      </div>
+
+      <!-- Cart summary -->
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span>Subtotal:</span>
+          <span id="subtotal">$0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Shipping:</span>
+          <span id="shipping">$0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Tax:</span>
+          <span id="tax">$0.00</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total:</span>
+          <span id="total">$0.00</span>
+        </div>
+
+        <div class="checkout-btns">
+          <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
+          <button class="continue-shopping" onclick="window.location.href='index.html'">Continue Shopping</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- JavaScript Files -->
+    <script src="js/cart.js"></script>
+    <script src="js/cart-view.js"></script>
+  </body>
+</html>
