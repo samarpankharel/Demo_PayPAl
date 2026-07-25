@@ -1,225 +1,575 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shopping Cart - Premium T-Shirts</title>
-    <link rel="stylesheet" href="style.css" />
-    <style>
-      /* Cart page specific styles */
-      .cart-container {
-        max-width: 1000px;
-        margin: 40px auto;
-        padding: 0 20px;
-      }
 
-      .cart-header {
-        font-size: 2rem;
-        margin-bottom: 30px;
-      }
+<head>
 
-      .cart-empty {
-        text-align: center;
-        padding: 60px 20px;
-        color: #6b6b6b;
-      }
+<meta charset="UTF-8">
 
-      .cart-empty p {
-        margin-bottom: 20px;
-        font-size: 1.1rem;
-      }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-      .cart-empty a {
-        background: #d9485f;
-        color: white;
-        padding: 12px 24px;
-        border-radius: 8px;
-        text-decoration: none;
-        display: inline-block;
-      }
+<title>Shopping Cart - Premium T-Shirts</title>
 
-      .cart-items {
-        background: white;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        margin-bottom: 30px;
-      }
+<link rel="stylesheet" href="style.css">
 
-      .cart-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px;
-        border-bottom: 1px solid #f0f0f0;
-      }
 
-      .cart-item:last-child {
-        border-bottom: none;
-      }
+<style>
 
-      .item-details {
-        flex: 1;
-      }
+.cart-container {
+    max-width:1000px;
+    margin:40px auto;
+    padding:0 20px;
+}
 
-      .item-name {
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin-bottom: 5px;
-      }
 
-      .item-price {
-        color: #d9485f;
-        font-weight: 700;
-      }
+.cart-header {
+    font-size:2rem;
+    margin-bottom:30px;
+}
 
-      .item-controls {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-      }
 
-      .quantity-control {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        background: #f0f0f0;
-        padding: 5px 10px;
-        border-radius: 6px;
-      }
+.cart-items {
 
-      .quantity-control button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: 1.1rem;
-        padding: 0;
-      }
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    margin-bottom:30px;
 
-      .quantity-control input {
-        width: 40px;
-        text-align: center;
-        border: none;
-        background: transparent;
-        font-size: 1rem;
-      }
+}
 
-      .remove-btn {
-        background: #d9485f;
-        color: white;
-        border: none;
-        padding: 8px 12px;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 0.9rem;
-      }
 
-      .remove-btn:hover {
-        background: #a82d47;
-      }
+.cart-item {
 
-      .cart-summary {
-        background: white;
-        border-radius: 12px;
-        padding: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      }
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px;
+    border-bottom:1px solid #eee;
 
-      .summary-row {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 15px;
-        font-size: 1rem;
-      }
+}
 
-      .summary-row.total {
-        border-top: 2px solid #f0f0f0;
-        padding-top: 15px;
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: #d9485f;
-      }
 
-      .checkout-btns {
-        display: flex;
-        gap: 12px;
-        margin-top: 20px;
-      }
+.item-details {
+    flex:1;
+}
 
-      .checkout-btns button {
-        flex: 1;
-        padding: 12px;
-        border: none;
-        border-radius: 8px;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-      }
 
-      .checkout-btn {
-        background: #d9485f;
-        color: white;
-      }
+.item-name {
 
-      .checkout-btn:hover {
-        background: #a82d47;
-      }
+    font-size:1.1rem;
+    font-weight:600;
 
-      .continue-shopping {
-        background: #f0f0f0;
-        color: #1f1f1f;
-      }
+}
 
-      .continue-shopping:hover {
-        background: #e0e0e0;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Header with back button -->
-    <header class="hero">
-      <h1>Shopping Cart</h1>
-      <p><a href="index.html" style="color: white; text-decoration: underline;">← Back to Shopping</a></p>
-    </header>
 
-    <!-- Cart content -->
-    <main class="cart-container">
-      <h2 class="cart-header">Your Cart</h2>
+.item-price {
 
-      <!-- Cart items list -->
-      <div id="cart-items-container" class="cart-items">
-        <!-- Items will be loaded here by JavaScript -->
-      </div>
+    color:#d9485f;
+    font-weight:bold;
 
-      <!-- Cart summary -->
-      <div class="cart-summary">
-        <div class="summary-row">
-          <span>Subtotal:</span>
-          <span id="subtotal">$0.00</span>
-        </div>
-        <div class="summary-row">
-          <span>Shipping:</span>
-          <span id="shipping">$0.00</span>
-        </div>
-        <div class="summary-row">
-          <span>Tax:</span>
-          <span id="tax">$0.00</span>
-        </div>
-        <div class="summary-row total">
-          <span>Total:</span>
-          <span id="total">$0.00</span>
-        </div>
+}
 
-        <div class="checkout-btns">
-          <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
-          <button class="continue-shopping" onclick="window.location.href='index.html'">Continue Shopping</button>
-        </div>
-      </div>
-    </main>
 
-    <!-- JavaScript Files -->
-    <script src="js/cart.js"></script>
-    <script src="js/cart-view.js"></script>
-  </body>
+
+.item-controls {
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+}
+
+
+
+.quantity-control {
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#f0f0f0;
+    padding:6px 12px;
+    border-radius:6px;
+
+}
+
+
+
+.quantity-control button {
+
+    border:none;
+    background:none;
+    cursor:pointer;
+    font-size:20px;
+
+}
+
+
+
+.quantity-control input {
+
+    width:40px;
+    text-align:center;
+    border:none;
+    background:transparent;
+
+}
+
+
+
+.remove-btn {
+
+    background:#d9485f;
+    color:white;
+    border:none;
+    padding:8px 12px;
+    border-radius:6px;
+    cursor:pointer;
+
+}
+
+
+
+.cart-summary {
+
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+
+}
+
+
+
+.summary-row {
+
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:15px;
+
+}
+
+
+
+.summary-row.total {
+
+    border-top:2px solid #eee;
+    padding-top:15px;
+    font-size:1.2rem;
+    font-weight:bold;
+    color:#d9485f;
+
+}
+
+
+
+.checkout-btns {
+
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+
+}
+
+
+
+.checkout-btns button {
+
+    flex:1;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+
+}
+
+
+
+.checkout-btn {
+
+    background:#d9485f;
+    color:white;
+
+}
+
+
+
+.continue-shopping {
+
+    background:#eee;
+
+}
+
+
+
+#paypal-button-container {
+
+    margin-top:30px;
+    display:none;
+
+}
+
+
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+<header class="hero">
+
+<h1>
+Shopping Cart
+</h1>
+
+
+<p>
+
+<a href="index.html" style="color:white;text-decoration:underline;">
+
+← Back to Shopping
+
+</a>
+
+</p>
+
+
+</header>
+
+
+
+
+
+<main class="cart-container">
+
+
+<h2 class="cart-header">
+Your Cart
+</h2>
+
+
+
+
+<div 
+id="cart-items-container"
+class="cart-items">
+
+</div>
+
+
+
+
+
+
+<div class="cart-summary">
+
+
+<div class="summary-row">
+
+<span>
+Subtotal:
+</span>
+
+<span id="subtotal">
+$0.00
+</span>
+
+</div>
+
+
+
+
+<div class="summary-row">
+
+<span>
+Shipping:
+</span>
+
+<span id="shipping">
+$0.00
+</span>
+
+</div>
+
+
+
+
+<div class="summary-row">
+
+<span>
+Tax:
+</span>
+
+<span id="tax">
+$0.00
+</span>
+
+</div>
+
+
+
+
+<div class="summary-row total">
+
+<span>
+Total:
+</span>
+
+<span id="total">
+$0.00
+</span>
+
+</div>
+
+
+
+
+
+
+<div class="checkout-btns">
+
+
+<button 
+class="checkout-btn"
+onclick="showPayPal()">
+
+Proceed to Checkout
+
+</button>
+
+
+
+
+<button
+class="continue-shopping"
+onclick="window.location.href='index.html'">
+
+Continue Shopping
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<div id="paypal-button-container">
+
+</div>
+
+
+
+
+</div>
+
+
+</main>
+
+
+
+
+
+
+<!-- PayPal SDK -->
+
+<script src="https://www.paypal.com/sdk/js?client-id=AWYbL9ZC-iztR0_I1Lc5L4GW9lzCo793PXARbuLnM4KtafqFkLCTbKHxcDfO4MDj1k88H41SzQ-EOVzT&currency=USD"></script>
+
+
+
+
+<script src="js/cart.js"></script>
+
+<script src="js/cart-view.js"></script>
+
+
+
+
+
+<script>
+
+
+function showPayPal(){
+
+
+const container =
+document.getElementById(
+"paypal-button-container"
+);
+
+
+
+container.style.display="block";
+
+
+
+container.scrollIntoView({
+behavior:"smooth"
+});
+
+
+
+if(container.innerHTML.trim() !== ""){
+return;
+}
+
+
+
+
+
+paypal.Buttons({
+
+
+
+createOrder: async function(){
+
+
+
+const total =
+cart.calculateTotal();
+
+
+
+const response =
+await fetch(
+"http://localhost:5000/api/payment/create-order",
+{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+amount:total
+
+})
+
+}
+
+);
+
+
+
+const order =
+await response.json();
+
+
+
+return order.id;
+
+
+
+},
+
+
+
+
+
+onApprove: async function(data){
+
+
+
+const response =
+await fetch(
+
+`http://localhost:5000/api/payment/capture-order/${data.orderID}`,
+
+{
+
+method:"POST"
+
+}
+
+);
+
+
+
+const details =
+await response.json();
+
+
+
+console.log(
+"Payment Result:",
+details
+);
+
+
+
+alert(
+"Payment Successful!"
+);
+
+
+
+cart.clearCart();
+
+
+
+window.location.href="index.html";
+
+
+
+},
+
+
+
+
+
+
+onCancel:function(){
+
+
+alert(
+"Payment Cancelled"
+);
+
+
+},
+
+
+
+
+
+onError:function(error){
+
+
+console.log(error);
+
+
+alert(
+"Payment Failed"
+);
+
+
+}
+
+
+
+
+}).render(
+"#paypal-button-container"
+);
+
+
+
+}
+
+
+
+</script>
+
+
+
+</body>
+
 </html>
