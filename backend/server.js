@@ -57,11 +57,18 @@ app.use(
 // ==========================
 
 const paymentRoutes = require("./routes/payment");
+const orderRoutes = require("./routes/orders");
 
 
 app.use(
     "/api/payment",
     paymentRoutes
+);
+
+
+app.use(
+    "/api/orders",
+    orderRoutes
 );
 
 
