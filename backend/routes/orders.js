@@ -46,3 +46,22 @@ router.get("/:id", async (req, res) => {
 });
 
 module.exports = router;
+router.delete("/:id", async (req, res) => {
+
+    try {
+
+        await Order.findByIdAndDelete(req.params.id);
+
+        res.json({
+            message: "Order deleted successfully"
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            message: error.message
+        });
+
+    }
+
+});
