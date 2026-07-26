@@ -65,3 +65,37 @@ router.delete("/:id", async (req, res) => {
     }
 
 });
+router.get("/stats/summary", async (req, res) => {
+
+    try {
+
+        const totalOrders = await Order.countDocuments();
+
+        const totalRevenue = await Order.aggregate([
+            {
+                $group: {
+                    _id: null,
+                    total: {
+                        $sum: "$amount"
+                    }
+                }
+            }
+        ]);
+
+        res.json({
+            totalOrders,
+            totalRevenue:
+                totalRevenue.length > 0
+                    ? totalRevenue[0].total
+                    : 0
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            message: error.message
+        });
+
+    }
+
+});
